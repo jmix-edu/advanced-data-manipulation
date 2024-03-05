@@ -5,8 +5,10 @@
     <data>
         <collection id="usersDc"
                     class="com.company.jmixpm.entity.User">
-            <fetchPlan extends="_base"/>
-            <loader id="usersDl" readOnly="true">
+            <fetchPlan extends="_base">
+                <property name="contactInformation"/>
+            </fetchPlan>
+            <loader id="usersDl" readOnly="true" cacheable="true">
                 <query>
                     <![CDATA[select e from User e order by e.username]]>
                 </query>
@@ -56,14 +58,15 @@
                 <action id="changePassword" type="sec_changePassword"/>
                 <action id="resetPassword" type="sec_resetPassword"/>
                 <action id="showUserSubstitutions" type="sec_showUserSubstitutions"/>
+                <action id="showUserProjects" text="msg://showUserProjects.text" type="list_itemTracking"/>
             </actions>
             <columns resizable="true">
                 <column property="username"/>
                 <column property="firstName"/>
                 <column property="lastName"/>
-                <column property="email"/>
                 <column property="timeZoneId"/>
                 <column property="active"/>
+                <column property="contactInformation"/>
             </columns>
         </dataGrid>
         <hbox id="lookupActions" visible="false">

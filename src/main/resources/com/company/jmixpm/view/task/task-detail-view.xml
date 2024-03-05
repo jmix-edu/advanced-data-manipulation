@@ -29,6 +29,8 @@
             </entityPicker>
             <dateTimePicker id="startDateField" property="startDate"/>
             <textField id="estimatedEffortsField" property="estimatedEfforts"/>
+            <comboBox id="labelField" property="label"/>
+            <checkbox id="closedField" property="closed"/>
         </formLayout>
         <hbox id="detailActions">
             <button id="saveAndCloseBtn" action="saveAction"/>

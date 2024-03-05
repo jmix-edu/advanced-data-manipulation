@@ -5,6 +5,19 @@
         <item view="User.list" title="msg://com.company.jmixpm.view.user/UserListView.title"/>
         <item view="Project.list" title="msg://com.company.jmixpm.view.project/projectListView.title"/>
         <item view="Task_.list" title="msg://com.company.jmixpm.view.task/taskListView.title"/>
+        <item view="TimeEntry.list" title="msg://com.company.jmixpm.view.timeentry/timeEntryListView.title"/>
+        <item view="Roadmap.list" title="msg://com.company.jmixpm.view.roadmap/roadmapListView.title"/>
+        <item view="ProjectStatsView" title="msg://com.company.jmixpm.view.projectstats/projectStatsView.title"/>
+        <item view="WorkloadView" title="msg://com.company.jmixpm.view.workload/workloadView.title"/>
+    </menu>
+
+    <menu id="customers" title="msg://com.company.jmixpm/menu.customers">
+        <item view="Customer.list" title="msg://com.company.jmixpm.view.customer/customerListView.title"/>
+        <item view="Order_.list" title="msg://com.company.jmixpm.view.order/orderListView.title"/>
+        <item view="CustomerSearchView" title="msg://com.company.jmixpm.view.customersearch/customerSearchView.title"/>
+        <item view="CustomerSubstringSearchView"
+              title="msg://com.company.jmixpm.view.customersubstringsearch/customerSubstringSearchView.title"/>
+
     </menu>
 
 </menu-config>

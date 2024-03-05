@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://customerSearchView.title">
+    <data>
+        <collection id="customersDc"
+                    class="com.company.jmixpm.entity.Customer">
+            <fetchPlan extends="_base"/>
+            <loader id="customersDl">
+                <query>
+                    <![CDATA[select e from Customer e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="ordersDc"
+                    class="com.company.jmixpm.entity.Order">
+            <fetchPlan extends="_base">
+                <property name="customer" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="ordersDl">
+                <query>
+                    <![CDATA[
+                    select e from Order_ e where e.customer = :container_customersDc
+                    ]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true">
+            <refresh loader="customersDl">
+                <onViewEvent type="Init"/>
+            </refresh>
+        </dataLoadCoordinator>
+    </facets>
+    <layout>
+        <entityComboBox id="customerField"
+                        label="msg://customerField.label"
+                        metaClass="Customer"
+                        itemsContainer="customersDc"/>
+        <dataGrid id="ordersDataGrid"
+                  dataContainer="ordersDc"
+                  minHeight="20em"
+                  height="100%"
+                  width="100%">
+            <columns>
+                <column property="orderNumber"/>
+                <column property="customer"/>
+                <column property="date"/>
+            </columns>
+        </dataGrid>
+    </layout>
+</view>
