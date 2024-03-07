@@ -22,12 +22,12 @@ public class TaskListView extends StandardListView<Task> {
 
     @Subscribe
     public void onInit(InitEvent event) {
-        Task task = dataManager.load(Task.class)
+      /*  Task task = dataManager.load(Task.class)
                 .all()
                 .one();
 
         Project project = task.getProject();
 
-        project.getName();
+        project.getName();*/
     }
 }

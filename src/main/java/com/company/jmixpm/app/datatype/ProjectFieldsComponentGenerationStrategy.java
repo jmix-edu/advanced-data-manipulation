@@ -1,6 +1,7 @@
 package com.company.jmixpm.app.datatype;
 
 import com.company.jmixpm.entity.Project;
+import com.google.common.base.Strings;
 import com.vaadin.flow.component.Component;
 import io.jmix.core.JmixOrder;
 import io.jmix.core.metamodel.datatype.Datatype;
@@ -29,6 +30,10 @@ public class ProjectFieldsComponentGenerationStrategy implements ComponentGenera
     @Override
     public Component createComponent(ComponentGenerationContext context) {
         String checkProperty = context.getProperty(); // 1
+        if (Strings.isNullOrEmpty(checkProperty)) {
+            return null;
+        }
+
         String[] properties = ValuePathHelper.parse(checkProperty); // 2
         if (properties.length > 1) {
             checkProperty = properties[properties.length - 1]; // 3

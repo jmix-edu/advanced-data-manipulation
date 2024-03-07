@@ -9,6 +9,8 @@ import io.jmix.core.entity.annotation.OnDeleteInverse;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import io.jmix.core.metamodel.annotation.JmixProperty;
+import io.jmix.dynattr.model.Categorized;
+import io.jmix.dynattr.model.Category;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -25,7 +27,7 @@ import java.util.UUID;
         @Index(name = "IDX_TASK__PROJECT", columnList = "PROJECT_ID")
 })
 @Entity(name = "Task_")
-public class Task {
+public class Task implements Categorized {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -69,6 +71,20 @@ public class Task {
     @JmixProperty
     @Transient
     private LocalDateTime supposedEndDate;
+
+    @JmixProperty
+    @Transient
+    private Category category;
+
+    @Override
+    public Category getCategory() {
+        return category;
+    }
+
+    @Override
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public LocalDateTime getSupposedEndDate() {
         return supposedEndDate;

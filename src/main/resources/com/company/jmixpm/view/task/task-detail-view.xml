@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:dynattr="http://jmix.io/schema/dynattr/flowui"
       title="msg://taskDetailView.title"
       focusComponent="form">
     <data>
@@ -8,11 +9,12 @@
             <fetchPlan extends="_base">
                 <property name="assignee" fetchPlan="_base"/>
             </fetchPlan>
-            <loader/>
+            <loader />
         </instance>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
+        <dynattr:dynamicAttributes/>
     </facets>
     <actions>
         <action id="saveAction" type="detail_saveClose"/>
@@ -31,7 +33,10 @@
             <textField id="estimatedEffortsField" property="estimatedEfforts"/>
             <comboBox id="labelField" property="label"/>
             <checkbox id="closedField" property="closed"/>
+            <textArea id="descriptionField" property="+taskNotesDescription"/>
         </formLayout>
+        <dynattr:dynamicAttributesPanel id="dynamicAttributesPanel"
+                                        dataContainer="taskDc"/>
         <hbox id="detailActions">
             <button id="saveAndCloseBtn" action="saveAction"/>
             <button id="closeBtn" action="closeAction"/>
