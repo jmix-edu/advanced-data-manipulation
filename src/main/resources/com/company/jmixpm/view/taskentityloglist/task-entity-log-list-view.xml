@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://taskEntityLogListView.title">
+    <data>
+        <collection id="tasksDc"
+                    class="com.company.jmixpm.entity.Task">
+            <fetchPlan extends="_base"/>
+            <loader id="tasksDl">
+                <query>
+                    <![CDATA[select e from Task_ e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="entityLogItemsDc"
+                    class="io.jmix.audit.entity.EntityLogItem">
+            <fetchPlan extends="_local"/>
+            <loader id="entityLogItemsDl">
+                <query>
+                    <![CDATA[select e from audit_EntityLog e
+                    where e.entityRef.entityId = :id
+                    order by e.eventTs]]>
+                </query>
+            </loader>
+            <collection id="entityLogAttrDc" property="attributes"/>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <layout>
+        <entityComboBox id="tasksField" metaClass="Task_" itemsContainer="tasksDc"/>
+        <hbox id="entityLogBox"
+              spacing="true"
+              height="100%"
+              width="100%">
+            <dataGrid id="logTable"
+                      width="100%"
+                      minHeight="20em"
+                      dataContainer="entityLogItemsDc">
+                <columns>
+                    <column property="eventTs"/>
+                    <column property="username"/>
+                    <column property="type"/>
+                </columns>
+            </dataGrid>
+            <dataGrid id="attrTable"
+                      minHeight="20em"
+                      width="100%"
+                      dataContainer="entityLogAttrDc">
+                <columns>
+                    <column property="name"/>
+                    <column property="oldValue"/>
+                    <column property="value"/>
+                </columns>
+            </dataGrid>
+        </hbox>
+    </layout>
+</view>

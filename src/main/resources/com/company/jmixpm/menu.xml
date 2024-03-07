@@ -20,4 +20,9 @@
 
     </menu>
 
+    <menu id="app-audit" title="msg://com.company.jmixpm/menu.app-audit">
+        <item view="TaskEntityLogListView"
+              title="msg://com.company.jmixpm.view.taskentityloglist/taskEntityLogListView.title"/>
+    </menu>
+
 </menu-config>
